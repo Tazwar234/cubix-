@@ -5,7 +5,7 @@ var gamestate;
 
 var player, playerImg, player_jmp;
 
-var ground , groundImg, invisibleGround;
+var ground , groundImg;
 
 var obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6, obstacle7, obstaclesGroup;
 
@@ -63,9 +63,7 @@ player.scale = 1.25
 player.setCollider('circle',-56, -150, 27)
 //player.debug = true
 
-invisibleGround = createSprite(0, windowHeight/2 + 120, 4000, 6)
-invisibleGround.visible = false;
-//invisibleGround.debug = true;
+
 
 restart = createSprite(width/2,height/2 - 100, 300, 300);
 restart.addImage(restartImg); 
@@ -193,6 +191,7 @@ function spawnObstacles() {
      obstacle.lifetime = 300
      if (obstacle.y < posy){
      obstaclesGroup.y = 584;
+
      }
       var rand = Math.round(random(1,7));
     switch(rand) {
