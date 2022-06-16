@@ -193,7 +193,7 @@ function spawnObstacles() {
      obstacles.y = posy;
 
      }
-     console.log(posy);
+     //console.log(posy);
      console.log(obstacle.y);
       var rand = Math.round(random(1,7));
     switch(rand) {
