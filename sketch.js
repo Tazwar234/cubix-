@@ -97,7 +97,7 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
 
-    if ((touches.length > 0 || keyDown('UP_ARROW') || keyDown('space') )&& player.y >= windowHeight/2 + 220){
+    if (keyDown('UP_ARROW') || keyDown('space') && player.y >= windowHeight/2 + 220){
         player.velocityY  = -15;
         jumpsound.play( )
         touches = []
@@ -150,7 +150,7 @@ function draw() {
         if (score > hiscore) {
             hiscore = score;
         }
-        if(touches.length > 0 ||keyDown("space")) {      
+        if(keyDown("space")) {      
            // reset();
            gamestate = play;
             restart.visible = false;
@@ -161,7 +161,7 @@ function draw() {
             player.changeAnimation('player', playerImg)
             player.scale = 1.25
             score = 0;
-            touches = []
+            
             
           }
     }
@@ -185,11 +185,11 @@ function spawnObstacles() {
     if(frameCount % 100 === 0) {
       var obstacle = createSprite(posx - ground.velocityX * 2.5, 584,20,30);
       obstacle.setCollider('circle',0, -50,45)
-      //obstacle.debug = true
+      obstacle.debug = true
       console.log(obstacle.y);
      obstacle.velocityX = ground.velocityX;
      obstacle.lifetime = 300
-     if (obstacle.y < 584){
+     if (obstacle.y > 584){
      obstaclesGroup.y = 584;
 
      }
