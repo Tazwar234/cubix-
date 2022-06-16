@@ -99,9 +99,10 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
 
-    if (keyDown('UP_ARROW') || keyDown('space') && player.y >= windowHeight/2 + 220){
+    if ((touches.length > 0 || keyDown('UP_ARROW') || keyDown('space') )&& player.y >= windowHeight/2 + 220){
         player.velocityY  = -15;
         jumpsound.play( )
+        touches = []
               
     }
     if (player.y < windowHeight/2 + 220){
@@ -119,12 +120,13 @@ function draw() {
     if (score % 100 === 0 && score> 0){
         checkpointsound.play();
     }
-    console.log(player.y)
+    //console.log(player.y)
     spawnObstacles();
     spawnClouds();
     spawnlava();
-    obstaclesGroup.velocityYEach = obstaclesGroup.velocityYEach - 0.8;
-    obstaclesGroup.collide(invisibleGround)
+
+    
+    
     if (obstaclesGroup.isTouching(lavaGroup)){
         lavaGroup.destroyEach();
     }
@@ -150,7 +152,7 @@ function draw() {
         if (score > hiscore) {
             hiscore = score;
         }
-        if(keyDown("space")) {      
+        if(touches.length > 0 ||keyDown("space")) {      
            // reset();
            gamestate = play;
             restart.visible = false;
@@ -161,6 +163,7 @@ function draw() {
             player.changeAnimation('player', playerImg)
             player.scale = 1.25
             score = 0;
+            touches = []
             
           }
     }
@@ -180,14 +183,17 @@ function spawnlava() {
 }
 function spawnObstacles() {
     var posx = 1500;
+    var posy = height -385;
     if(frameCount % 100 === 0) {
-      var obstacle = createSprite(posx - ground.velocityX * 2.5 - ground.velocityX,height - 385,20,30);
+      var obstacle = createSprite(posx - ground.velocityX * 2.5, posy,20,30);
       obstacle.setCollider('circle',0, -50,45)
       //obstacle.debug = true
-      
+      console.log(obstacle.y);
      obstacle.velocityX = ground.velocityX;
-    obstacle.lifetime = 300
-
+     obstacle.lifetime = 300
+     if (obstacle.y < posy){
+     obstaclesGroup.velocityYEach = obstaclesGroup.velocityYEach - 0.8;
+     }
       var rand = Math.round(random(1,7));
     switch(rand) {
       case 1: obstacle.addImage(obstacle1);
@@ -227,4 +233,5 @@ function spawnClouds() {
     }
     
   }
+  
   
