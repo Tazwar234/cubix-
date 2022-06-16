@@ -185,14 +185,14 @@ function spawnObstacles() {
     var posx = 1500;
     var posy = height -385;
     if(frameCount % 100 === 0) {
-      var obstacle = createSprite(posx - ground.velocityX * 2.5, posy,20,30);
+      var obstacle = createSprite(posx - ground.velocityX * 2.5, 584,20,30);
       obstacle.setCollider('circle',0, -50,45)
       //obstacle.debug = true
       console.log(obstacle.y);
      obstacle.velocityX = ground.velocityX;
      obstacle.lifetime = 300
      if (obstacle.y < posy){
-     obstaclesGroup.velocityYEach = obstaclesGroup.velocityYEach - 0.8;
+     obstaclesGroup.y = 584;
      }
       var rand = Math.round(random(1,7));
     switch(rand) {
@@ -233,5 +233,4 @@ function spawnClouds() {
     }
     
   }
-  
   
