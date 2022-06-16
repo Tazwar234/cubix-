@@ -194,6 +194,7 @@ function spawnObstacles() {
 
      }
      console.log(posy);
+     console.log(obstacle.y);
       var rand = Math.round(random(1,7));
     switch(rand) {
       case 1: obstacle.addImage(obstacle1);
