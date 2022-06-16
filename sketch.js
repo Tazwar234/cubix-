@@ -189,7 +189,7 @@ function spawnObstacles() {
       console.log(obstacle.y);
      obstacle.velocityX = ground.velocityX;
      obstacle.lifetime = 300
-     if (obstacle.y < posy){
+     if (obstacle.y < 584){
      obstaclesGroup.y = 584;
 
      }
